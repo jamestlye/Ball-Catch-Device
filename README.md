@@ -8,6 +8,25 @@ The Ball Catch Device is a complementary project with the Eye Tracking Goggles. 
 * [Flex Sensor](https://www.sparkfun.com/products/10264)
 * Flexible TPE 
 
+## LEAST SQUARE!!
+
+```cpp
+  //LEAST SQUARE APPROXIMATION (to find line of best fit's slope)(unit: volt/ms) 
+  sum_x = sum_y = sum_x2 = sum_xy = 0;
+  
+  for (int k = 0; k < 15; k++){
+
+    clippedTime = past15Times[k] - past15Times[0];
+    
+    sum_x += clippedTime;
+    sum_y += past15Avg[k];
+    sum_x2 += clippedTime*clippedTime;
+    sum_xy += past15Avg[k]*clippedTime;
+  }
+
+  slope = (15.0 * sum_xy - sum_x * sum_y)/(15.0 * (double)(sum_x2) - (double)(sum_x * sum_x));
+```
+
 ## Notes
 
 Version 3 is Generation 1 - Version 3. For the actual code that was sent to the Arduino, go to [bleuart_datamode.ino](https://github.com/jamestlye/Ball-Catch-Device/tree/master/Catch%20Sensor%20V3.0/bleuart_datamode)
