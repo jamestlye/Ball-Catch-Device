@@ -159,55 +159,55 @@ void setup(void)
 
   Serial.begin(115200);
 
-//  /* Initialise the module */
-//  Serial.print(F("Initialising the Bluefruit LE module: "));
-//
-//  if ( !ble.begin(VERBOSE_MODE) )
-//  {
-//    error(F("Couldn't find Bluefruit, make sure it's in CoMmanD mode & check wiring?"));
-//  }
-//  Serial.println( F("OK!") );
-//
-//  if ( FACTORYRESET_ENABLE )
-//  {
-//    /* Perform a factory reset to make sure everything is in a known state */
-//    Serial.println(F("Performing a factory reset: "));
-//    if ( ! ble.factoryReset() ){
-//      error(F("Couldn't factory reset"));
-//    }
-//  }
-//
-//  if (! ble.sendCommandCheckOK(F( "AT+GAPDEVNAME=Catch Sensor" )) ) {
-//    error(F("Could not set device name?"));
-//  }
-//
-//  /* Disable command echo from Bluefruit */
-//  ble.echo(false);
-//
-//  Serial.println("Requesting Bluefruit info:");
-//  /* Print Bluefruit information */
-//  ble.info();
-//
-//  ble.verbose(false);  // debug info is a little annoying after this point!
-//
-//  /* Wait for connection */ //needed to be connected in order to work
-//  while (! ble.isConnected()) {
-//      delay(500);
-//  }
-//
-//  Serial.println(F("******************************"));
-//
-//  // LED Activity command is only supported from 0.6.6
-//  if ( ble.isVersionAtLeast(MINIMUM_FIRMWARE_VERSION) )
-//  {
-//    // Change Mode LED Activity
-//    Serial.println(F("Change LED activity to " MODE_LED_BEHAVIOUR));
-//    ble.sendCommandCheckOK("AT+HWModeLED=" MODE_LED_BEHAVIOUR);
-//  }
-//
-//  // Set module to DATA mode
-//  Serial.println( F("Switching to DATA mode!") );
-//  ble.setMode(BLUEFRUIT_MODE_DATA);
+ /* Initialise the module */
+ Serial.print(F("Initialising the Bluefruit LE module: "));
+
+ if ( !ble.begin(VERBOSE_MODE) )
+ {
+   error(F("Couldn't find Bluefruit, make sure it's in CoMmanD mode & check wiring?"));
+ }
+ Serial.println( F("OK!") );
+
+ if ( FACTORYRESET_ENABLE )
+ {
+   /* Perform a factory reset to make sure everything is in a known state */
+   Serial.println(F("Performing a factory reset: "));
+   if ( ! ble.factoryReset() ){
+     error(F("Couldn't factory reset"));
+   }
+ }
+
+ if (! ble.sendCommandCheckOK(F( "AT+GAPDEVNAME=Catch Sensor" )) ) {
+   error(F("Could not set device name?"));
+ }
+
+ /* Disable command echo from Bluefruit */
+ ble.echo(false);
+
+ Serial.println("Requesting Bluefruit info:");
+ /* Print Bluefruit information */
+ ble.info();
+
+ ble.verbose(false);  // debug info is a little annoying after this point!
+
+ /* Wait for connection */ //needed to be connected in order to work
+ while (! ble.isConnected()) {
+     delay(500);
+ }
+
+ Serial.println(F("******************************"));
+
+ // LED Activity command is only supported from 0.6.6
+ if ( ble.isVersionAtLeast(MINIMUM_FIRMWARE_VERSION) )
+ {
+   // Change Mode LED Activity
+   Serial.println(F("Change LED activity to " MODE_LED_BEHAVIOUR));
+   ble.sendCommandCheckOK("AT+HWModeLED=" MODE_LED_BEHAVIOUR);
+ }
+
+ // Set module to DATA mode
+ Serial.println( F("Switching to DATA mode!") );
+ ble.setMode(BLUEFRUIT_MODE_DATA);
 
 //CALIBRATIOM START
 int volt,average = 0;
@@ -255,7 +255,6 @@ threshold = average/5;
 
 void loop(void)
 {
-//  Serial.println("yo");
 //  tone(buzzer, 4000,500);
 
   currentVal = analogRead(flexPin);
@@ -322,19 +321,19 @@ void loop(void)
     if (onTime >= holdDuration && !printedRelease){
       //CATCH!!
 
-//      char message[5];
-//      // 1 byte for release/press flag, 4 bytes for ulong timestamp
-//      message[0] = CATCH;
-//      
-//      strncpy(message+1, (char *)&lastOnTime, 4); //sending lastOnTime as timestamp bc it is the original catch time (roughly 1000 ms before)
-//
-//      Serial.println("Sending press");
-//      ble.write(message, 5);
+     char message[5];
+     // 1 byte for release/press flag, 4 bytes for ulong timestamp
+     message[0] = CATCH;
+     
+     strncpy(message+1, (char *)&lastOnTime, 4); //sending lastOnTime as timestamp bc it is the original catch time (roughly 1000 ms before)
+
+     Serial.println("Sending press");
+     ble.write(message, 5);
 
       
       
-//      Serial.println("caught");
-//      Serial.println(onTime);
+     Serial.println("caught");
+     Serial.println(onTime);
 
       tone(buzzer, 3000, 125);
       delay(200);
@@ -347,17 +346,17 @@ void loop(void)
   if (currentState == false && printedRelease == true){
     //RELEASE!!
 
-//    char message[5];
-//    // 1 byte for release/press flag, 4 bytes for ulong timestamp
-//    message[0] = RELEASE;
-//    strncpy(message+1, (char *)&currentTime, 4);
-//      
-//    Serial.println("Sending release");
-//    ble.write(message, 5);
+   char message[5];
+   // 1 byte for release/press flag, 4 bytes for ulong timestamp
+   message[0] = RELEASE;
+   strncpy(message+1, (char *)&currentTime, 4);
+     
+   Serial.println("Sending release");
+   ble.write(message, 5);
 
     
-//    Serial.println("released");
-//    Serial.println(slope);
+   Serial.println("released");
+   Serial.println(slope);
 
     tone(buzzer, 4000, 125);
     delay(200);
