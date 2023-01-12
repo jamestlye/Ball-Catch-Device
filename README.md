@@ -10,4 +10,6 @@ The Ball Catch Device is a complementary project with the Eye Tracking Goggles. 
 
 ## Notes
 
-Version 3 is Generation 1 - Version 3 and Flex Sensor is part of Generation 2 - Version 1.
+Version 3 is Generation 1 - Version 3. For the actual code that was sent to the Arduino, go to [this file](https://github.com/jamestlye/Ball-Catch-Device/Catch Sensor V3.0/bleuart_datamode/bleuart_datamode.ino)
+
+Other codes are test/prototype codes.
