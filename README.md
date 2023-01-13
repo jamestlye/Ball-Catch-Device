@@ -29,7 +29,7 @@ The Ball Catch Device is a complementary project with the Eye Tracking Goggles. 
 
 ## Notes
 
-Version 3 is Generation 1 - Version 3. For the actual code that was sent to the Arduino, go to [bleuart_datamode.ino](https://github.com/jamestlye/Ball-Catch-Device/tree/master/Catch%20Sensor%20V3.0/bleuart_datamode)
+Version 3 is Generation 2 - Version 1 (Upgraded from Generation 1 - Version 2, which was a different set of hardware). For the actual code that was sent to the Arduino, go to [bleuart_datamode.ino](https://github.com/jamestlye/Ball-Catch-Device/tree/master/Catch%20Sensor%20V3.0/bleuart_datamode)
 
 Other codes are test/prototype codes.
 
